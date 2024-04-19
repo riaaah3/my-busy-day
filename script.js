@@ -1,6 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+var timeDisplayEl = $('#currentDay');
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -18,6 +19,38 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+ // function readProjectsFromStorage() {
+   // var projects = localStorage.getItem('projects');
+    //if (projects) {
+  //     projects = JSON.parse(projects);
+  //   } else {
+  //     projects = [];
+  //   }
+  //   return projects;
+  // }
+  // function saveProjectsToStorage(projects) {
+  //   localStorage.setItem('projects', JSON.stringify(projects));
+  // }
+
+  // readProjectsFromStorage();
+  // saveProjectsToStorage();
+
+  function handleProjectFormSubmit(event) {
+    event.preventDefault();
+  }
+    //
+    // TODO: Add code to display the current date in the header of the page.
+    function displayTime() {
+      var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+      timeDisplayEl.text(rightNow);
+    }
+    displayTime();
+
+    $(".saveBtn").on("click",function(event){
+      event.preventDefault()
+      var userEntry = $(this).siblings("textarea").val()
+      var timeStamp = $(this).parent().attr("id")
+      console.log(userEntry, timeStamp)
+    })
+  
 });
