@@ -54,10 +54,19 @@ $(function () {
       localStorage.setItem(timeStamp, userEntry)
 
     })
+    var currentHour = dayjs().hour()
+    console.log(currentHour)
   for (i = 9; i <=17;i++){
     var id="hour-"+i
     var storedEntry = localStorage.getItem(id)
     console.log(storedEntry)
     $("#"+id).children("textarea").val(storedEntry)
+    if(currentHour > i){
+      $("#"+id).children("textarea").addClass("past")
+    }else if(currentHour === i){
+      $("#"+id).children("textarea").addClass("present")
+    }else {
+      $("#"+id).children("textarea").addClass("future")
+    }
   }
 });
