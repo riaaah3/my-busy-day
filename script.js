@@ -51,6 +51,13 @@ $(function () {
       var userEntry = $(this).siblings("textarea").val()
       var timeStamp = $(this).parent().attr("id")
       console.log(userEntry, timeStamp)
+      localStorage.setItem(timeStamp, userEntry)
+
     })
-  
+  for (i = 9; i <=17;i++){
+    var id="hour-"+i
+    var storedEntry = localStorage.getItem(id)
+    console.log(storedEntry)
+    $("#"+id).children("textarea").val(storedEntry)
+  }
 });
